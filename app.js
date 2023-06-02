@@ -1,6 +1,11 @@
-$(() => {});
+$(() => {
+  $('button').on('click',() => {
+    //function
+  })
 
-const prompt = require("prompt-sync")();
+});
+
+const prompt = require('prompt-sync')({sigint: true});
 
 // Array of words to guess from
 const words = ["javascript", "hangman", "game", "programming", "openai"];
