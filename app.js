@@ -120,6 +120,8 @@ $(() => {
 
   //COMMENT
 
+  //Wilson's comment
+
   // $("guess").val();
 
   // Function to process the user's guess
