@@ -106,17 +106,19 @@ $(() => {
       $("body").append($button);
       //if (playAgain === "y") startGame();
       //else stillPlaying = false;
-    } else if (attempts === 0 ) {
+    } else if (attempts === 0) {
       const $button = $("<button>")
-      .text("Play again")
-      .on("click", () => {
-        location.reload();
-      });
+        .text("Play again")
+        .on("click", () => {
+          location.reload();
+        });
       $youLose = $("<h3>").text(`You lost! The word was "${word}"`);
       $("body").append($youLose);
       $("body").append($button);
     }
   }
+
+  //COMMENT
 
   // $("guess").val();
 
