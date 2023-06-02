@@ -1,9 +1,9 @@
-$(() => {
-  $('button').on('click',() => {
-    //function
-  })
+// //$(() => {
+//   $('button').on('click',() => {
+//     //function
+//   })
 
-});
+// });
 
 const prompt = require('prompt-sync')({sigint: true});
 
