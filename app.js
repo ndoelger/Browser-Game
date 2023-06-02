@@ -18,17 +18,17 @@ $(() => {
   // Variable to track the number of attempts
   let attempts = 10;
 
-  const $attempts = $("<h3>").text(`Attempts: ${attempts}`);
+  const $attempts = $("<h2>").text(`Attempts: ${attempts}`);
   $("body").append($attempts);
   const $display = $("<p>");
   $("body").append($display);
   $getLetters = $("<p>");
   $("body").append($getLetters);
 
-  function startGame() {
-    $("input").on("click", guessLetter);
-  }
-  startGame();
+  $("input").on("click", guessLetter);
+  $("input").on("click", function () {
+    $(this).addClass("bounce-out-top");
+  });
 
   function guessLetter() {
     const $guess = $(this).val();
