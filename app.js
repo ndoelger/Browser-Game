@@ -2,8 +2,7 @@ $(() => {
   // const prompt = require("prompt-sync")({ sigint: true });
 
   // Array of words to guess from
-  const words = ["javascript"];
-  // , "hangman", "game", "programming", "openai"
+  const words = ["javascript", "hangman", "game", "programming", "openai"];
   // Choosing the words from the array
   let word = words[Math.floor(Math.random() * words.length)];
 
@@ -89,14 +88,21 @@ $(() => {
     $display.text(display);
     $("body").append($display);
     $getLetters = $("<p>").text(guessedLetters.sort());
+    //$('body').remove('<p>');
     $("body").append($getLetters);
     // console.log(guessedLetters.sort());
 
-    // if (!display.includes("_")) {
-    //   let playAgain = prompt("You win! Play again? (Y/N)").toLowerCase();
-    //   if (playAgain === "y") startGame();
-    //   else stillPlaying = false;
-    // }
+    if (!display.includes("_")) {
+      //let playAgain = prompt("You win! Play again? (Y/N)").toLowerCase();
+      const $playAgain = $("<h3>").text('You win!');
+      const $button = $('<button>').text('Play again').on('click', () => {
+        location.reload();
+      })
+      $("body").append($playAgain);
+      $('body').append($button);
+      //if (playAgain === "y") startGame();
+      //else stillPlaying = false;
+    }
   }
 
   // $("guess").val();
