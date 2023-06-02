@@ -2,8 +2,8 @@ $(() => {
   // const prompt = require("prompt-sync")({ sigint: true });
 
   // Array of words to guess from
-  const words = ["javascript", "hangman", "game", "programming", "openai"];
-
+  const words = ["javascript"];
+  // , "hangman", "game", "programming", "openai"
   // Choosing the words from the array
   let word = words[Math.floor(Math.random() * words.length)];
 
@@ -38,59 +38,66 @@ $(() => {
 
     attempts = 10;
 
-    while (attempts > 0 && stillPlaying) {
-      // console.log("**********");
-      const $attempts = $("<h3>").text(`Attempts: ${attempts}`);
-      $("body").append($attempts);
-      console.log(`Attempts: ${attempts}`);
-      $("#submit").on("click", () => {
-        const $guess = $("#guess").val();
-        if (
-          guessedLetters.includes($guess) ||
-          $guess.length !== 1 ||
-          typeof $guess !== "string" ||
-          false
-        ) {
-          console.log("Invalid answer");
-          return;
-        }
-        if (word.includes($guess)) {
-          console.log("Correct guess!");
-          guessedLetters.push($guess);
-          correctLetters.push($guess);
-        } else {
-          attempts--;
-          console.log(`Nope :( Try again.`);
-          guessedLetters.push($guess);
-        }
-        displayWord();
-      });
-      // guess = prompt("Please guess a letter: ");
-      // guessLetter(guess);
-    }
+    // while (attempts > 0 && stillPlaying) {
+    // console.log("**********");
+    // guess = prompt("Please guess a letter: ");
+    // guessLetter(guess);
+    const $attempts = $("<h3>").text(`Attempts: ${attempts}`);
+    $("body").append($attempts);
+    console.log(`Attempts: ${attempts}`);
+    $("#submit").on("click", () => {
+      const $guess = $("#guess").val();
+      if (
+        guessedLetters.includes($guess) ||
+        $guess.length !== 1 ||
+        typeof $guess !== "string" ||
+        false
+      ) {
+        console.log("Invalid answer");
+        return;
+      }
+      if (word.includes($guess)) {
+        console.log("Correct guess!");
+        guessedLetters.push($guess);
+        correctLetters.push($guess);
+      } else {
+        attempts--;
+        console.log(`Nope :( Try again.`);
+        guessedLetters.push($guess);
+        console.log(attempts);
+        $attempts.text(`Attempts: ${attempts}`);
+        // $("body").append($attempts);
+      }
+      displayWord();
+    });
+    // }
   }
   startGame();
 
   // if (!attempts) console.log(`Game over! The correct word was ${word}.`);
 
-  // // Function to display the current state of the word
-  // function displayWord() {
-  //   let display = "";
-  //   for (let char of wordArray) {
-  //     if (correctLetters.includes(char)) display += char;
-  //     else {
-  //       display += "_";
-  //     }
-  //   }
-  //   console.log(display);
-  //   console.log(guessedLetters.sort());
+  // Function to display the current state of the word
+  function displayWord() {
+    let display = "";
+    let $display = $("<p>");
+    for (let char of wordArray) {
+      if (correctLetters.includes(char)) display += char;
+      else {
+        display += " _ ";
+      }
+    }
+    $display.text(display);
+    $("body").append($display);
+    $getLetters = $("<p>").text(guessedLetters.sort());
+    $("body").append($getLetters);
+    // console.log(guessedLetters.sort());
 
-  //   if (!display.includes("_")) {
-  //     let playAgain = prompt("You win! Play again? (Y/N)").toLowerCase();
-  //     if (playAgain === "y") startGame();
-  //     else stillPlaying = false;
-  //   }
-  // }
+    // if (!display.includes("_")) {
+    //   let playAgain = prompt("You win! Play again? (Y/N)").toLowerCase();
+    //   if (playAgain === "y") startGame();
+    //   else stillPlaying = false;
+    // }
+  }
 
   // $("guess").val();
 
