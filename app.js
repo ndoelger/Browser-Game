@@ -20,6 +20,12 @@ $(() => {
 
   let stillPlaying = true;
 
+  const $attempts = $("<h3>").text(`Attempts: ${attempts}`);
+  $("body").append($attempts);
+  const $display = $("<p>");
+  $("body").append($display);
+  $getLetters = $("<p>");
+  $("body").append($getLetters);
   // Function to start the game
   // const username = prompt("What is your name? ");
   // console.log(`Your name is ${username}`);
@@ -41,9 +47,8 @@ $(() => {
     // console.log("**********");
     // guess = prompt("Please guess a letter: ");
     // guessLetter(guess);
-    const $attempts = $("<h3>").text(`Attempts: ${attempts}`);
-    $("body").append($attempts);
-    console.log(`Attempts: ${attempts}`);
+
+    // console.log(`Attempts: ${attempts}`);
     $("#submit").on("click", () => {
       const $guess = $("#guess").val();
       if (
@@ -78,7 +83,7 @@ $(() => {
   // Function to display the current state of the word
   function displayWord() {
     let display = "";
-    let $display = $("<p>");
+
     for (let char of wordArray) {
       if (correctLetters.includes(char)) display += char;
       else {
@@ -86,20 +91,19 @@ $(() => {
       }
     }
     $display.text(display);
-    $("body").append($display);
-    $getLetters = $("<p>").text(guessedLetters.sort());
-    //$('body').remove('<p>');
-    $("body").append($getLetters);
+    $getLetters.text(guessedLetters.sort());
     // console.log(guessedLetters.sort());
 
     if (!display.includes("_")) {
       //let playAgain = prompt("You win! Play again? (Y/N)").toLowerCase();
-      const $playAgain = $("<h3>").text('You win!');
-      const $button = $('<button>').text('Play again').on('click', () => {
-        location.reload();
-      })
+      const $playAgain = $("<h3>").text("You win!");
+      const $button = $("<button>")
+        .text("Play again")
+        .on("click", () => {
+          location.reload();
+        });
       $("body").append($playAgain);
-      $('body').append($button);
+      $("body").append($button);
       //if (playAgain === "y") startGame();
       //else stillPlaying = false;
     }
