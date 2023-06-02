@@ -1,11 +1,6 @@
-// //$(() => {
-//   $('button').on('click',() => {
-//     //function
-//   })
+$(() => {});
 
-// });
-
-const prompt = require('prompt-sync')({sigint: true});
+const prompt = require("prompt-sync")({ sigint: true });
 
 // Array of words to guess from
 const words = ["javascript", "hangman", "game", "programming", "openai"];
@@ -45,7 +40,8 @@ function startGame() {
   attempts = 10;
 
   while (attempts > 0 && stillPlaying) {
-    console.log("**********");
+    // console.log("**********");
+
     console.log(`Attempts: ${attempts}`);
     guess = prompt("Please guess a letter: ");
     guessLetter(guess);
