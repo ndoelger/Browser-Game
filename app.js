@@ -41,10 +41,33 @@ function startGame() {
 
   while (attempts > 0 && stillPlaying) {
     // console.log("**********");
-
-    console.log(`Attempts: ${attempts}`);
-    guess = prompt("Please guess a letter: ");
-    guessLetter(guess);
+    const $attempts = "<h3>".text(`Attempts: ${attempts}`);
+    $("body").append($attempt);
+    //console.log(`Attempts: ${attempts}`);
+    $("#submit").on("click", () => {
+      const $guess = $("#guess").val();
+      if (
+        guessedLetters.includes($guess) ||
+        $guess.length !== 1 ||
+        typeof $guess !== "string" ||
+        false
+      ) {
+        console.log("Invalid answer");
+        return;
+      }
+      if (word.includes($guess)) {
+        console.log("Correct guess!");
+        guessedLetters.push($guess);
+        correctLetters.push($guess);
+      } else {
+        attempts--;
+        console.log(`Nope :( Try again.`);
+        guessedLetters.push($guess);
+      }
+      displayWord();
+    });
+    // guess = prompt("Please guess a letter: ");
+    // guessLetter(guess);
   }
 }
 startGame();
@@ -70,25 +93,27 @@ function displayWord() {
   }
 }
 
+$("guess").val();
+
 // Function to process the user's guess
-function guessLetter(letter) {
-  if (
-    guessedLetters.includes(letter) ||
-    guess.length !== 1 ||
-    typeof letter !== "string" ||
-    false
-  ) {
-    console.log("Invalid answer");
-    return;
-  }
-  if (word.includes(letter)) {
-    console.log("Correct guess!");
-    guessedLetters.push(letter);
-    correctLetters.push(letter);
-  } else {
-    attempts--;
-    console.log(`Nope :( Try again.`);
-    guessedLetters.push(letter);
-  }
-  displayWord();
-}
+// function guessLetter(letter) {
+//   if (
+//     guessedLetters.includes(letter) ||
+//     guess.length !== 1 ||
+//     typeof letter !== "string" ||
+//     false
+//   ) {
+//     console.log("Invalid answer");
+//     return;
+//   }
+//   if (word.includes(letter)) {
+//     console.log("Correct guess!");
+//     guessedLetters.push(letter);
+//     correctLetters.push(letter);
+//   } else {
+//     attempts--;
+//     console.log(`Nope :( Try again.`);
+//     guessedLetters.push(letter);
+//   }
+//   displayWord();
+// }
