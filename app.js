@@ -31,17 +31,17 @@ $(() => {
   // console.log(`Your name is ${username}`);
 
   function startGame() {
-    word = words[Math.floor(Math.random() * words.length)];
+    // word = words[Math.floor(Math.random() * words.length)];
 
-    wordArray = word.split("");
+    // wordArray = word.split("");
 
-    console.log(wordArray);
+    // console.log(wordArray);
 
-    correctLetters = [];
+    // correctLetters = [];
 
-    guessedLetters = [];
+    // guessedLetters = [];
 
-    attempts = 10;
+    // attempts = 10;
 
     // while (attempts > 0 && stillPlaying) {
     // console.log("**********");
@@ -96,16 +96,25 @@ $(() => {
 
     if (!display.includes("_")) {
       //let playAgain = prompt("You win! Play again? (Y/N)").toLowerCase();
-      const $playAgain = $("<h3>").text("You win!");
+      const $youWin = $("<h3>").text("You win!");
       const $button = $("<button>")
         .text("Play again")
         .on("click", () => {
           location.reload();
         });
-      $("body").append($playAgain);
+      $("body").append($youWin);
       $("body").append($button);
       //if (playAgain === "y") startGame();
       //else stillPlaying = false;
+    } else if (attempts === 0 ) {
+      const $button = $("<button>")
+      .text("Play again")
+      .on("click", () => {
+        location.reload();
+      });
+      $youLose = $("<h3>").text(`You lost! The word was "${word}"`);
+      $("body").append($youLose);
+      $("body").append($button);
     }
   }
 
