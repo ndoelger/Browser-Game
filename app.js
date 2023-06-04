@@ -17,7 +17,10 @@ $(() => {
 
   // Variable to track the number of attempts
   let attempts = 10;
+  let numImage = -1;
 
+  const $hangman = $(`<img src = Hangmen/HM${numImage}.jpg>`);
+  $("body").prepend($hangman);
   const $attempts = $("<h2>").text(`Attempts: ${attempts}`);
   $("body").append($attempts);
   const $display = $("<p>");
@@ -29,6 +32,8 @@ $(() => {
   $("input").on("click", function () {
     $(this).addClass("bounce-out-top");
   });
+
+  displayWord();
 
   function guessLetter() {
     const $guess = $(this).val();
@@ -49,8 +54,11 @@ $(() => {
     } else {
       attempts--;
       console.log(`Nope :( Try again.`);
+      numImage++;
+      $hangman.attr("src", `Hangmen/HM${numImage}.jpg`);
+      // console.log(numImage);
       guessedLetters.push($guess);
-      console.log(attempts);
+      // console.log(attempts);
       $attempts.text(`Attempts: ${attempts}`);
     }
     displayWord();
@@ -69,7 +77,7 @@ $(() => {
     $getLetters.text(guessedLetters.sort());
 
     if (!display.includes("_")) {
-      const $youWin = $("<h3>").text("You win!");
+      const $youWin = $("<h1>").text("You win!");
       const $button = $("<button>")
         .text("Play again")
         .on("click", () => {
@@ -83,7 +91,7 @@ $(() => {
         .on("click", () => {
           location.reload();
         });
-      $youLose = $("<h3>").text(`You lost! The word was "${word}"`);
+      $youLose = $("<h1>").text(`You lost! The word was "${word}"`);
       $("body").append($youLose);
       $("body").append($button);
     }
